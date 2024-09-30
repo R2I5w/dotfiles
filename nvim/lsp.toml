@@ -1,0 +1,11 @@
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+# on_event = ['BufEnter']
+on_event = ['BufRead', 'CursorHold']
+lua_source = """
+require("config/lsp")
+"""
+
+[[plugins]]
+repo = 'folke/lazydev.nvim'
+on_source = 'nvim-lspconfig'

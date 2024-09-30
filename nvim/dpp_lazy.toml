@@ -1,0 +1,71 @@
+# color-theme
+[[plugins]]
+repo = "craftzdog/solarized-osaka.nvim"
+on_event = ['VimEnter']
+lua_source = '''
+require('solarized-osaka').setup({ })
+'''
+
+[[plugins]]
+repo = 'm4xshen/autoclose.nvim'
+on_event = ['InsertEnter']
+lua_source = """
+require("autoclose").setup()
+"""
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+on_event = ['BufRead', 'CursorHold']
+lua_source = """
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+  },
+  ensure_installed = 'all'
+}
+"""
+
+[[plugins]]
+repo = "numToStr/Comment.nvim"
+# on_event = ['BufEnter']
+on_event = ['BufRead', 'CursorHold']
+lua_source = """
+require('Comment').setup()
+"""
+
+[[plugins]]
+repo = "nvim-lualine/lualine.nvim"
+on_event = ['VimEnter']
+lua_source = """
+require('lualine').setup()
+"""
+
+[[plugins]]
+repo = "shortcuts/no-neck-pain.nvim"
+on_event = ['BufRead', 'CursorHold']
+lua_source = """
+require('no-neck-pain').setup()
+"""
+
+[[plugins]]
+repo = "Shougo/deol.nvim"
+on_event = ['BufRead', 'CursorHold']
+
+[[plugins]]
+repo = "fholgado/minibufexpl.vim"
+on_event = ['BufRead', 'CursorHold']
+
+[[plugins]]
+repo = "vim-jp/vimdoc-ja"
+on_event = ['BufRead', 'CursorHold']
+
+[[plugins]]
+repo = 'uki00a/denops-pomodoro.vim'
+on_cmd = [
+  "PomodoroStart",
+  "PomodoroPause",
+  "PomodoroResume",
+  "PomodoroReset",
+  "PomodoroEcho",
+]

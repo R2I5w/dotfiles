@@ -1,0 +1,92 @@
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+on_event = ['BufRead', 'CursorHold']
+lua_source = '''
+local ddc_custom_patch_global = vim.fn["ddc#custom#patch_global"]
+
+local pum_map_select_relative = vim.fn["pum#map#select_relative"]
+local pum_map_confirm = vim.fn["pum#map#confirm"]
+local pum_map_cancel = vim.fn["pum#map#cancel"]
+local pum_visible = vim.fn["pum#visible"]
+local pum_entered = vim.fn["pum#entered"]
+
+vim.fn["ddc#custom#load_config"](vim.fn.expand("~/.config/nvim/ddc.ts"))
+vim.fn["ddc#enable"]({context_filetype = "treesitter"})
+
+vim.api.nvim_create_autocmd("InsertEnter", {
+	callback = function(event)
+		vim.keymap.set("i", "<C-p>", function()
+			pum_map_select_relative(-1)
+		end, {})
+
+		vim.keymap.set("i", "<C-n>", function()
+					pum_map_select_relative(1)
+				end, {})
+
+		vim.keymap.set("i", "<C-y>", function()
+			return '<Cmd>call pum#map#confirm()<CR>'
+		end, { expr = true, silent = true })
+
+		vim.keymap.set("i", "<CR>", function()
+			return pum_visible() and '<Cmd>call pum#map#confirm()<CR>' or '<CR>'
+		end, { expr = true, silent = true })
+	end
+})
+'''
+
+[[plugins]]
+repo = 'Shougo/pum.vim'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-ui-pum'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-around'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'LumaKernel/ddc-source-file'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'tani/ddc-fuzzy'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-filter-sorter_head'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = "Shougo/ddc-source-lsp"
+on_source = 'nvim-lspconfig'
+
+[[plugins]]
+repo = "uga-rosa/ddc-source-lsp-setup"
+on_source = 'nvim-lspconfig'
+
+[[plugins]]
+repo = "github/copilot.vim"
+on_source = 'ddc.vim'
+hook_source = '''
+let g:copilot_no_maps = v:true
+'''
+
+[[plugins]]
+repo = "Shougo/ddc-source-copilot"
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'matsui54/denops-signature_help'
+on_source = 'ddc.vim'
+lua_source = '''
+vim.fn["signature_help#enable"]()
+'''
+
+[[plugins]]
+repo = 'matsui54/denops-popup-preview.vim'
+on_source = 'ddc.vim'
+hook_source = '''
+call popup_preview#enable()
+'''

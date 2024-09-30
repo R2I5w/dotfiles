@@ -1,0 +1,22 @@
+# denops.vim
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+hook_source = """
+let g:denops#deno = exepath("deno")
+	"""
+
+# dpp.vim
+[[plugins]]
+repo = 'Shougo/dpp.vim'
+
+[[plugins]]
+repo = "Shougo/dpp-ext-toml"
+
+[[plugins]]
+repo = "Shougo/dpp-ext-lazy"
+
+[[plugins]]
+repo = "Shougo/dpp-ext-installer"
+
+[[plugins]]
+repo = "Shougo/dpp-protocol-git"
