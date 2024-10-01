@@ -9,10 +9,25 @@ ddu_custom_patch_global({
 			split = "floating",
 			floatingBorder = "rounded",
 		},
+		ff = {
+			filterFloatingPosition = "bottom",
+			filterSplitDirection = "floating",
+			floatingBorder = "rounded",
+			previewFloating = true,
+			previewFloatingBorder = "rounded",
+			previewFloatingTitle = "Preview",
+			previewSplit = "horizontal",
+			prompt = "> ",
+			split = "floating",
+			startFilter = true,
+		},
 	},
 	sourceOptions = {
 		file = {
 			columns = { 'icon_filename' },
+		},
+		file_rec = {
+			matchers = { "matcher_substring" },
 		},
 	},
 	kindOptions = {
@@ -29,14 +44,24 @@ ddu_custom_patch_local("filer", {
 		},
 	},
 })
+
+ddu_custom_patch_local("ff", {
+	ui = "ff",
+	sources = {
+		{
+			name = "file_rec",
+		},
+	},
+})
+
 --
 
-vim.api.nvim_create_autocmd({ "TabEnter", "CursorHold", "FocusGained" }, {
-	pattern = "<buffer>",
-	callback = function()
-		vim.fn["ddu#ui#do_action"]('checkItems')
-	end,
-})
+-- vim.api.nvim_create_autocmd({ "TabEnter", "CursorHold", "FocusGained" }, {
+-- 	pattern = "<buffer>",
+-- 	callback = function()
+-- 		vim.fn["ddu#ui#do_action"]('checkItems')
+-- 	end,
+-- })
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "ddu-filer",
@@ -68,16 +93,16 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- vim.api.nvim_create_autocmd("FileType", {
--- 	pattern = "ff",
--- 	callback = function()
--- 		local opts = { noremap = true, silent = true, buffer = true }
---
--- 		vim.keymap.set("n", "q", "<Cmd>call ddu#ui#do_action('quit')<CR>", opts)
--- 		vim.keymap.set('n', '<Cr>', "<Cmd>call ddu#ui#do_action('itemAction')<CR>)", opts)
--- 		vim.keymap.set('n', 'i', "<Cmd>call ddu#ui#do_action('openFilterWindow')<CR>", opts)
--- 	end,
--- })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "ddu-ff",
+	callback = function()
+		local opts = { noremap = true, silent = true, buffer = true }
+
+		vim.keymap.set("n", "q", "<Cmd>call ddu#ui#do_action('quit')<CR>", opts)
+		vim.keymap.set('n', '<Cr>', "<Cmd>call ddu#ui#do_action('itemAction')<CR>)", opts)
+		vim.keymap.set('n', 'i', "<Cmd>call ddu#ui#do_action('openFilterWindow')<CR>", opts)
+	end,
+})
 --
 -- ddu_custom_patch_local("ff", {
 -- 	ui = "ff",

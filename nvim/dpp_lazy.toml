@@ -51,6 +51,9 @@ require('no-neck-pain').setup()
 [[plugins]]
 repo = "Shougo/deol.nvim"
 on_event = ['BufRead', 'CursorHold']
+lua_source = '''
+require("config/deol")
+'''
 
 [[plugins]]
 repo = "fholgado/minibufexpl.vim"
@@ -69,3 +72,14 @@ on_cmd = [
   "PomodoroReset",
   "PomodoroEcho",
 ]
+
+# [[plugins]]
+# repo = "folke/noice.nvim"
+# on_event = ['BufRead', 'CursorHold']
+# lua_source = """
+# require("noice").setup()
+# """
+#
+# [[plugins]]
+# repo = "MunifTanjim/nui.nvim"
+# on_source = ['noice.nvim']

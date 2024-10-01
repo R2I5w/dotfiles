@@ -14,6 +14,5 @@ keymap("t", "<Esc>", [[<C-\><C-n>]])
 keymap("n", "np", "<cmd>NoNeckPain<CR>", opts)
 keymap("n", "df", "<cmd>call deol#start({ 'cwd': '%'->expand()->fnamemodify(':h'), 'split': 'floating' })<CR>", opts)
 keymap("n", "db", "<cmd>call deol#start({ 'cwd': '%'->expand()->fnamemodify(':h') })<CR>", opts)
-keymap("n", "sd", "<cmd>call deol#kill_editor()<CR>", opts)
 
 vim.g.comfortable_motion_no_default_key_mappings = 1

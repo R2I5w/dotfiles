@@ -81,6 +81,13 @@ vim.keymap.set('n', 'sf', function()
 	})
 end, { silent = true })
 
+vim.keymap.set('n', 'ff', function()
+	vim.fn['ddu#start']({
+		name = 'ff',
+	})
+end, { silent = true })
+
+
 -- vim.keymap.set('n', 'ff', function()
 -- 	vim.fn['ddu#start']({
 -- 		name = 'ff',
