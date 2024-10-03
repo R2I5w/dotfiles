@@ -95,7 +95,7 @@ call popup_preview#enable()
 repo = 'hrsh7th/vim-vsnip'
 on_source = 'ddc.vim'
 lua_source = '''
-vim.fn.expand("~/.cache/dpp/repos/github.com/rafamadriz/friendly-snippets/snippets"),
+vim.g.vsnip_snippet_dir = vim.fn.expand("~/.cache/dpp/repos/github.com/rafamadriz/friendly-snippets/snippets")
 '''
 
 [[plugins]]

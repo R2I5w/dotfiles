@@ -70,6 +70,19 @@ close_icon = false
 repo = "vim-jp/vimdoc-ja"
 on_event = ['BufRead', 'CursorHold']
 
+
+[[plugins]]
+repo = "ryicoh/deepl.vim"
+on_event = ['BufRead', 'CursorHold']
+hook_source = '''
+let g:deepl#endpoint = "https://api-free.deepl.com/v2/translate"
+
+let g:deepl#auth_key = "8321b217-9289-4510-934e-ca5abb14fa57:fx"
+
+vmap t<C-j> <Cmd>call deepl#v("JA")<CR>
+vmap t<C-e> <Cmd>call deepl#v("EN")<CR>
+'''
+
 # [[plugins]]
 # repo = "folke/noice.nvim"
 # on_event = ['BufRead', 'CursorHold']
