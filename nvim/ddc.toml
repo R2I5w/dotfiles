@@ -15,6 +15,7 @@ vim.fn["ddc#enable"]({context_filetype = "treesitter"})
 
 vim.api.nvim_create_autocmd("InsertEnter", {
 	callback = function(event)
+
 		vim.keymap.set("i", "<C-p>", function()
 			pum_map_select_relative(-1)
 		end, {})
@@ -90,3 +91,17 @@ on_source = 'ddc.vim'
 hook_source = '''
 call popup_preview#enable()
 '''
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+on_source = 'ddc.vim'
+lua_source = '''
+vim.fn.expand("~/.cache/dpp/repos/github.com/rafamadriz/friendly-snippets/snippets"),
+'''
+
+[[plugins]]
+repo = 'rafamadriz/friendly-snippets'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'uga-rosa/ddc-source-vsnip'
+on_source = 'ddc.vim'

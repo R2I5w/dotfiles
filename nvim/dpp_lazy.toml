@@ -1,4 +1,3 @@
-# color-theme
 [[plugins]]
 repo = "craftzdog/solarized-osaka.nvim"
 on_event = ['VimEnter']
@@ -28,7 +27,6 @@ require'nvim-treesitter.configs'.setup {
 
 [[plugins]]
 repo = "numToStr/Comment.nvim"
-# on_event = ['BufEnter']
 on_event = ['BufRead', 'CursorHold']
 lua_source = """
 require('Comment').setup()
@@ -56,22 +54,21 @@ require("config/deol")
 '''
 
 [[plugins]]
-repo = "fholgado/minibufexpl.vim"
+repo = "akinsho/bufferline.nvim"
 on_event = ['BufRead', 'CursorHold']
+lua_source = '''
+vim.opt.termguicolors = true
+require("bufferline").setup({
+options = {
+buffer_close_icon = false,
+close_icon = false
+}
+})
+'''
 
 [[plugins]]
 repo = "vim-jp/vimdoc-ja"
 on_event = ['BufRead', 'CursorHold']
-
-[[plugins]]
-repo = 'uki00a/denops-pomodoro.vim'
-on_cmd = [
-  "PomodoroStart",
-  "PomodoroPause",
-  "PomodoroResume",
-  "PomodoroReset",
-  "PomodoroEcho",
-]
 
 # [[plugins]]
 # repo = "folke/noice.nvim"

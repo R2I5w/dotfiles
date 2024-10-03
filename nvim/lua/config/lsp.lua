@@ -8,6 +8,9 @@ local lspconfig = require("lspconfig")
 local servers = {
 	"lua_ls",
 	"taplo",
+	"yamlls",
+	"dockerls",
+	"pylsp",
 }
 
 -- Auto start language servers.

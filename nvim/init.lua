@@ -46,6 +46,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "CursorHold", "InsertEnter" }, {
 	callback = function()
 		vim.opt.clipboard = "unnamedplus"
 		require("config/keymaps")
+		require("config/options")
 	end,
 })
 
@@ -84,6 +85,12 @@ end, { silent = true })
 vim.keymap.set('n', 'ff', function()
 	vim.fn['ddu#start']({
 		name = 'ff',
+	})
+end, { silent = true })
+
+vim.keymap.set('n', 'fm', function()
+	vim.fn['ddu#start']({
+		name = 'ff-mr',
 	})
 end, { silent = true })
 

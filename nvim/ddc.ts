@@ -10,6 +10,7 @@ export class Config extends BaseConfig {
 				"copilot",
 				"lsp",
 				"around",
+				"vsnip",
 				"file",
 			],
 			sourceOptions: {
@@ -25,6 +26,9 @@ export class Config extends BaseConfig {
 					mark: "[lsp]",
 					forceCompletionPattern:
 						"\\.\\w*|:\\w*|->\\w*",
+				},
+				vsnip: {
+					mark: "[vsnip]",
 				},
 
 				_: {
