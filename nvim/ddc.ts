@@ -12,6 +12,7 @@ export class Config extends BaseConfig {
 				"around",
 				"vsnip",
 				"file",
+				"skkeleton",
 			],
 			sourceOptions: {
 				"copilot": {
@@ -27,6 +28,13 @@ export class Config extends BaseConfig {
 					forceCompletionPattern:
 						"\\.\\w*|:\\w*|->\\w*",
 				},
+				"skkeleton": {
+					mark: "SKK",
+					matchers: [],
+					sorters: [],
+					isVolatile: true,
+				},
+
 				vsnip: {
 					mark: "[vsnip]",
 				},
