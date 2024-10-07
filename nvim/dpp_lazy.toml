@@ -10,6 +10,7 @@ repo = 'm4xshen/autoclose.nvim'
 on_event = ['InsertEnter']
 lua_source = """
 require("autoclose").setup()
+  disable_on_copilot = true,
 """
 
 [[plugins]]
