@@ -13,3 +13,19 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		vim.cmd("silent! lcd " .. vim.fn.fnameescape(dir))
 	end
 })
+
+vim.api.nvim_create_user_command('GitDiff', function()
+	vim.cmd([[
+    new
+    setlocal buftype=nofile bufhidden=delete noswapfile
+    setfiletype gitcommit
+    read !git diff #
+    setlocal readonly nobuflisted
+    syntax enable
+    highlight gitcommitComment ctermfg=gray guifg=gray
+    highlight gitcommitOnBranch ctermfg=blue guifg=blue
+    highlight gitcommitSelectedFile ctermfg=green guifg=green
+    highlight gitcommitDiscardedFile ctermfg=red guifg=red
+    normal! gg
+  ]])
+end, {})
