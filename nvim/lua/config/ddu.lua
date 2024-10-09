@@ -1,5 +1,7 @@
 local ddu_custom_patch_global = vim.fn["ddu#custom#patch_global"]
 local ddu_custom_patch_local = vim.fn["ddu#custom#patch_local"]
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = true, buffer = true }
 
 
 ddu_custom_patch_global({
@@ -68,7 +70,6 @@ ddu_custom_patch_local("ff-mr", {
 	},
 })
 
-
 --
 
 -- vim.api.nvim_create_autocmd({ "TabEnter", "CursorHold", "FocusGained" }, {
@@ -81,9 +82,7 @@ ddu_custom_patch_local("ff-mr", {
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "ddu-filer",
 	callback = function()
-		local opts = { noremap = true, silent = true, buffer = true }
-
-		vim.keymap.set('n', '<CR>', function()
+		keymap('n', '<CR>', function()
 			local item = vim.fn['ddu#ui#get_item']()
 			if item.isTree then
 				vim.fn['ddu#ui#do_action']('itemAction', { name = 'narrow' })
@@ -93,16 +92,16 @@ vim.api.nvim_create_autocmd("FileType", {
 			end
 		end, opts)
 
-		vim.keymap.set("n", "q", "<Cmd>call ddu#ui#do_action('quit')<CR>", opts)
-		vim.keymap.set('n', 'h',
+		keymap("n", "q", "<Cmd>call ddu#ui#do_action('quit')<CR>", opts)
+		keymap('n', 'h',
 			"<Cmd>call ddu#ui#do_action('itemAction', {'name': 'narrow', 'params': {'path': '..'}})<CR>",
 			opts)
-		vim.keymap.set('n', 'd', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<CR>", opts)
-		vim.keymap.set('n', 'r', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>",
+		keymap('n', 'd', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<CR>", opts)
+		keymap('n', 'r', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>",
 			opts)
-		vim.keymap.set('n', 't', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'newFile'})<CR>",
+		keymap('n', 't', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'newFile'})<CR>",
 			opts)
-		vim.keymap.set('n', 'mk',
+		keymap('n', 'mk',
 			"<Cmd>call ddu#ui#do_action('itemAction', {'name': 'newDirectory'})<CR>", opts)
 	end,
 })
@@ -110,9 +109,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "ddu-ff",
 	callback = function()
-		local opts = { noremap = true, silent = true, buffer = true }
-
-		vim.keymap.set('n', '<CR>', function()
+		keymap('n', '<CR>', function()
 			local item = vim.fn['ddu#ui#get_item']()
 			if item.isTree then
 				vim.fn['ddu#ui#do_action']('itemAction', { name = 'narrow' })
@@ -123,20 +120,20 @@ vim.api.nvim_create_autocmd("FileType", {
 		end, opts)
 
 
-		vim.keymap.set("n", "q", "<Cmd>call ddu#ui#do_action('quit')<CR>", opts)
-		vim.keymap.set('n', '<Cr>', "<Cmd>call ddu#ui#do_action('itemAction')<CR>)", opts)
-		vim.keymap.set('n', 'i', "<Cmd>call ddu#ui#do_action('openFilterWindow')<CR>", opts)
-		vim.keymap.set('n', 'h',
+		keymap("n", "q", "<Cmd>call ddu#ui#do_action('quit')<CR>", opts)
+		keymap('n', '<Cr>', "<Cmd>call ddu#ui#do_action('itemAction')<CR>)", opts)
+		keymap('n', 'i', "<Cmd>call ddu#ui#do_action('openFilterWindow')<CR>", opts)
+		keymap('n', 'h',
 			"<Cmd>call ddu#ui#do_action('itemAction', {'name': 'narrow', 'params': {'path': '..'}})<CR>",
 			opts)
-		vim.keymap.set('n', 'd', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<CR>", opts)
-		vim.keymap.set('n', 'r', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>",
+		keymap('n', 'd', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<CR>", opts)
+		keymap('n', 'r', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>",
 			opts)
-		vim.keymap.set('n', 't', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'newFile'})<CR>",
+		keymap('n', 't', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'newFile'})<CR>",
 			opts)
-		vim.keymap.set('n', 'mk',
+		keymap('n', 'mk',
 			"<Cmd>call ddu#ui#do_action('itemAction', {'name': 'newDirectory'})<CR>", opts)
-		vim.keymap.set('n', 'i', "<Cmd>call ddu#ui#do_action('openFilterWindow')<CR>", opts)
+		keymap('n', 'i', "<Cmd>call ddu#ui#do_action('openFilterWindow')<CR>", opts)
 	end,
 })
 --

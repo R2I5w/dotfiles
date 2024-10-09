@@ -1,3 +1,5 @@
+local keymap = vim.keymap.set
+
 require("lazydev").setup()
 
 require("ddc_source_lsp_setup").setup()
@@ -53,18 +55,18 @@ lspconfig.denols.setup({
 vim.lsp.set_log_level("debug")
 
 -- lsp keymaps
-vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-vim.keymap.set("n", "gf", "<cmd>lua vim.lsp.buf.format()<CR>")
-vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
-vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
-vim.keymap.set("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-vim.keymap.set("n", "gn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+keymap("n", "gf", "<cmd>lua vim.lsp.buf.format()<CR>")
+keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
+keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+keymap("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+keymap("n", "gn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
 -- vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
 
-vim.keymap.set("n", "ge", "<cmd>lua vim.diagnostic.open_float()<CR>")
-vim.keymap.set("n", "g]", "<cmd>lua vim.diagnostic.goto_next()<CR>")
-vim.keymap.set("n", "g[", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+keymap("n", "ge", "<cmd>lua vim.diagnostic.open_float()<CR>")
+keymap("n", "g]", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+keymap("n", "g[", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 
-vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
+keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")

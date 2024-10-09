@@ -3,7 +3,7 @@
 repo = 'vim-denops/denops.vim'
 hook_source = """
 let g:denops#deno = exepath("deno")
-	"""
+"""
 
 # dpp.vim
 [[plugins]]
