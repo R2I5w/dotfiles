@@ -99,6 +99,17 @@ vmap t<C-j> <Cmd>call deepl#v("JA")<CR>
 vmap t<C-e> <Cmd>call deepl#v("EN")<CR>
 '''
 
+[[plugins]]
+repo = "skanehira/translate.vim"
+on_event = ['BufRead', 'CursorHold']
+hook_source = '''
+let g:translate_source = "en"
+let g:translate_target = "ja"
+let g:translate_popup_window = 1
+nmap gr <Plug>(Translate)
+vmap t <Plug>(VTranslate)
+'''
+
 # [[plugins]]
 # repo = "folke/noice.nvim"
 # on_event = ['BufRead', 'CursorHold']
