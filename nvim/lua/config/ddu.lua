@@ -19,6 +19,7 @@ ddu_custom_patch_global({
 			previewSplit = "horizontal",
 			prompt = "> ",
 			split = "floating",
+			floatingBorder = "rounded",
 			winWidth = "float2nr(&columns * 0.9)",
 			winHeight = "float2nr(&lines * 0.8)",
 		},
@@ -66,6 +67,13 @@ ddu_custom_patch_local("ff-mr", {
 	sources = {
 		{
 			name = "mr",
+		},
+	},
+	sourceOptions = {
+		mr = {
+			converters = {
+				"converter_devicon",
+			},
 		},
 	},
 })

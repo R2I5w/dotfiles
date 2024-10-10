@@ -36,6 +36,11 @@ on_source = ['ddu.vim']
 repo = 'Shougo/ddu-filter-matcher_substring'
 on_source = ['ddu.vim']
 
+# mr用に追加
+# [[plugins]]
+# repo = 'Shougo/ddu-filter-matcher_relative'
+# on_source = ['ddu.vim']
+
 # ddu_kind
 [[plugins]]
 repo = 'Shougo/ddu-kind-file'
