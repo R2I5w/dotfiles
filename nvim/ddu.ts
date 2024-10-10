@@ -62,6 +62,12 @@ export class Config extends BaseConfig {
 					],
 				},
 			},
+
+			kindOptions: {
+				_: {
+					defaultAction: "open",
+				},
+			},
 		});
 
 		args.contextBuilder.patchLocal("ff-mr", {
@@ -76,6 +82,12 @@ export class Config extends BaseConfig {
 					converters: [
 						"converter_devicon",
 					],
+				},
+			},
+
+			kindOptions: {
+				_: {
+					defaultAction: "open",
 				},
 			},
 		});
