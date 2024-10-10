@@ -9,7 +9,6 @@ repo = "ellisonleao/gruvbox.nvim"
 on_event = ['BufRead', 'CursorHold']
 lua_source = """
 require("gruvbox").setup({
-  terminal_colors = true,
   contrast = "soft",
   transparent_mode = true,
   palette_overrides = {
@@ -19,10 +18,14 @@ require("gruvbox").setup({
 """
 
 [[plugins]]
-repo = 'm4xshen/autoclose.nvim'
-on_event = ['BufRead', 'CursorHold']
+repo = "miyakogi/seiya.vim"
+# on_event = ['BufRead', 'CursorHold']
+on_event = ["ColorSchemePre", 'BufRead', 'CursorHold']
+# on_cmd = ["SeiyaEnable"]
 lua_source = """
-require("autoclose").setup()
+vim.cmd("let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbhhg']")
+-- vim.g.seiya_auto_enable = 1
+-- vim.cmd("SeiyaEnable")
 """
 
 [[plugins]]

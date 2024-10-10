@@ -15,3 +15,5 @@ vim.api.nvim_create_autocmd("FileType", {
 		keymap('t', 'jj', [[<C-\><C-n>]], opts)
 	end
 })
+
+vim.g['deol#floating_border'] = "rounded"
