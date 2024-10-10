@@ -1,4 +1,6 @@
 -- vim.g.maplocalleader = ' '
+vim.wo.number = true
+vim.wo.relativenumber = true
 vim.opt.laststatus = 3
 vim.opt.cursorline = true
 vim.opt.virtualedit = "none"
