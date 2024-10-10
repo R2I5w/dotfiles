@@ -15,6 +15,15 @@ local servers = {
 	"pylsp",
 }
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+	vim.lsp.handlers.hover,
+	{
+		border = "rounded", -- "shadow" , "none", "rounded"
+		-- border = border
+		-- width = 100,
+	}
+)
+
 -- Auto start language servers.
 for _, name in ipairs(servers) do
 	lspconfig[name].setup({})
