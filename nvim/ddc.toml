@@ -122,16 +122,8 @@ call skkeleton#config(#{
 \   globalDictionaries: [[ "~/.skk/SKK-JISYO.L", "euc-jp" ]],
 \   })
 
-call skkeleton#register_keymap('henkan', "<", 'purgeCandidate')
-call skkeleton#register_keymap('henkan', "X", '')
-
-call skkeleton#register_keymap('henkan', "<S-q>", 'purgeCandidate')
-call skkeleton#register_keymap('henkan', "X", '')
-
 call skkeleton#register_keymap('input', ';', 'henkanPoint')
 
-imap <C-j> <Plug>(skkeleton-enable)
-cmap <C-j> <Plug>(skkeleton-enable)
+imap <C-i> <Plug>(skkeleton-enable)
 imap <C-l> <Plug>(skkeleton-disable)
-inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
 '''
