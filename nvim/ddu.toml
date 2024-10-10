@@ -2,7 +2,68 @@
 repo = 'Shougo/ddu.vim'
 on_event = ['BufRead', 'CursorHold']
 lua_source = '''
-require("config/ddu")
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = true, buffer = true }
+
+vim.fn["ddu#custom#load_config"](vim.fn.expand("~/.config/nvim/ddu.ts"))
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "ddu-filer",
+	callback = function()
+		keymap('n', '<CR>', function()
+			local item = vim.fn['ddu#ui#get_item']()
+			if item.isTree then
+				vim.fn['ddu#ui#do_action']('itemAction', { name = 'narrow' })
+			else
+				vim.fn['ddu#ui#do_action']('itemAction',
+					{ name = 'open' })
+			end
+		end, opts)
+
+		keymap("n", "q", "<Cmd>call ddu#ui#do_action('quit')<CR>", opts)
+		keymap('n', 'h',
+			"<Cmd>call ddu#ui#do_action('itemAction', {'name': 'narrow', 'params': {'path': '..'}})<CR>",
+			opts)
+		keymap('n', 'd', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<CR>", opts)
+		keymap('n', 'r', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>",
+			opts)
+		keymap('n', 't', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'newFile'})<CR>",
+			opts)
+		keymap('n', 'mk',
+			"<Cmd>call ddu#ui#do_action('itemAction', {'name': 'newDirectory'})<CR>", opts)
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "ddu-ff",
+	callback = function()
+		keymap('n', '<CR>', function()
+			local item = vim.fn['ddu#ui#get_item']()
+			if item.isTree then
+				vim.fn['ddu#ui#do_action']('itemAction', { name = 'narrow' })
+			else
+				vim.fn['ddu#ui#do_action']('itemAction',
+					{ name = 'open' })
+			end
+		end, opts)
+
+
+		keymap("n", "q", "<Cmd>call ddu#ui#do_action('quit')<CR>", opts)
+		keymap('n', '<Cr>', "<Cmd>call ddu#ui#do_action('itemAction')<CR>)", opts)
+		keymap('n', 'i', "<Cmd>call ddu#ui#do_action('openFilterWindow')<CR>", opts)
+		keymap('n', 'h',
+			"<Cmd>call ddu#ui#do_action('itemAction', {'name': 'narrow', 'params': {'path': '..'}})<CR>",
+			opts)
+		keymap('n', 'd', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<CR>", opts)
+		keymap('n', 'r', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'rename'})<CR>",
+			opts)
+		keymap('n', 't', "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'newFile'})<CR>",
+			opts)
+		keymap('n', 'mk',
+			"<Cmd>call ddu#ui#do_action('itemAction', {'name': 'newDirectory'})<CR>", opts)
+		keymap('n', 'i', "<Cmd>call ddu#ui#do_action('openFilterWindow')<CR>", opts)
+	end,
+})
 '''
 
 # ddu_ui
