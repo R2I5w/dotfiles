@@ -1,9 +1,22 @@
+# [[plugins]]
+# repo = "craftzdog/solarized-osaka.nvim"
+# on_event = ['VimEnter']
+# lua_source = '''
+# require('solarized-osaka').setup({ })
+# '''
 [[plugins]]
-repo = "craftzdog/solarized-osaka.nvim"
-on_event = ['VimEnter']
-lua_source = '''
-require('solarized-osaka').setup({ })
-'''
+repo = "ellisonleao/gruvbox.nvim"
+on_event = ['BufRead', 'CursorHold']
+lua_source = """
+require("gruvbox").setup({
+  terminal_colors = true,
+  contrast = "soft",
+  transparent_mode = true,
+  palette_overrides = {
+    bright_green = "#98971a",
+  },
+})
+"""
 
 [[plugins]]
 repo = 'm4xshen/autoclose.nvim'
