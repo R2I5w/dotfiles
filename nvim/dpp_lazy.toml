@@ -114,6 +114,15 @@ vmap t <Plug>(VTranslate)
 repo = "machakann/vim-sandwich"
 on_event = ['BufRead', 'CursorHold']
 
+[[plugins]]
+repo = "nvim-zh/colorful-winsep.nvim"
+on_event = ['WinNew', 'WinEnter']
+lua_source = '''
+require('colorful-winsep').setup {
+  symbols = { '─', '│', '╭', '╮', '╰', '╯' },
+}
+'''
+
 # [[plugins]]
 # repo = "folke/noice.nvim"
 # on_event = ['BufRead', 'CursorHold']
