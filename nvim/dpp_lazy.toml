@@ -110,6 +110,10 @@ nmap gr <Plug>(Translate)
 vmap t <Plug>(VTranslate)
 '''
 
+[[plugins]]
+repo = "machakann/vim-sandwich"
+on_event = ['BufRead', 'CursorHold']
+
 # [[plugins]]
 # repo = "folke/noice.nvim"
 # on_event = ['BufRead', 'CursorHold']
