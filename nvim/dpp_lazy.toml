@@ -123,13 +123,114 @@ require('colorful-winsep').setup {
 }
 '''
 
-# [[plugins]]
-# repo = "folke/noice.nvim"
-# on_event = ['BufRead', 'CursorHold']
-# lua_source = """
-# require("noice").setup()
-# """
-#
-# [[plugins]]
-# repo = "MunifTanjim/nui.nvim"
-# on_source = ['noice.nvim']
+[[plugins]]
+repo = 'mfussenegger/nvim-dap'
+on_event = ['BufRead', 'CursorHold']
+
+[[plugins]]
+repo = 'nvim-neotest/nvim-nio'
+on_source = ['nvim-dap']
+
+[[plugins]]
+repo = 'rcarriga/nvim-dap-ui'
+on_source = ['nvim-dap']
+lua_source = '''
+require('dapui').setup({
+  layouts = {
+    {
+      elements = {
+        { id = "watches", size = 0.20 },
+        { id = "stacks", size = 0.20 },
+        { id = "breakpoints", size = 0.20 },
+        { id = "scopes", size = 0.40 }
+      },
+      position = "right",
+      size = 40
+    },
+    {
+      elements = {
+        { id = "console", size = 0.5 },
+        { id = "repl", size = 0.5 }
+      },
+      position = "bottom",
+      size = 10
+    }
+  },
+})
+-- 自動でウィンドウを開閉
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.before.attach.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.launch.dapui_config = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated.dapui_config = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited.dapui_config = function()
+  dapui.close()
+end
+'''
+
+[[plugins]]
+repo = 'theHamsta/nvim-dap-virtual-text'
+on_source = ['nvim-dap']
+lua_source = '''
+require('nvim-dap-virtual-text').setup()
+'''
+
+[[plugins]]
+repo = 'mfussenegger/nvim-dap-python'
+on_event = ['BufRead', 'CursorHold']
+# on_source = ['nvim-dap']
+lua_source = '''
+require('dap-python').setup('python')
+-- コンテナ上のPythonをデバッグする設定
+table.insert(require('dap').configurations.python, {
+  type = 'python',
+  request = 'attach',
+  name = 'Remote Python Debugger',
+  port = 5678,
+  host = "127.0.0.1",
+  mode = "remote",
+  cwd = vim.fn.getcwd(),
+  -- ローカルとコンテナのパスをマッピング
+  pathMappings = {
+    {
+      localRoot = function() -- ローカルのPythonコードを格納するディレクトリ
+        return vim.fn.input("Local directory > ", vim.fn.getcwd(), "file")
+      end,
+      remoteRoot = function() -- コンテナ内のPythonコードを格納するディレクトリ
+        return vim.fn.input("Container directory > ", "/code/app", "file")
+      end,
+    },
+  },
+})
+
+-- :help dap-mappings の例に従ってキーマッピングを設定
+vim.g.mapleader = " "
+vim.keymap.set('n', '<leader>d', function() require('dap').continue() end)
+vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
+vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)
+vim.keymap.set('n', '<F12>', function() require('dap').step_out() end)
+vim.keymap.set('n', '<Leader>b', function() require('dap').toggle_breakpoint() end)
+vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint() end)
+vim.keymap.set('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
+vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
+vim.keymap.set({'n', 'v'}, '<Leader>dh', function()
+  require('dap.ui.widgets').hover()
+end)
+vim.keymap.set({'n', 'v'}, '<Leader>dp', function()
+  require('dap.ui.widgets').preview()
+end)
+vim.keymap.set('n', '<Leader>df', function()
+  local widgets = require('dap.ui.widgets')
+  widgets.centered_float(widgets.frames)
+end)
+vim.keymap.set('n', '<Leader>ds', function()
+  local widgets = require('dap.ui.widgets')
+  widgets.centered_float(widgets.scopes)
+end)
+'''
