@@ -234,3 +234,31 @@ vim.keymap.set('n', '<Leader>ds', function()
   widgets.centered_float(widgets.scopes)
 end)
 '''
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+on_source = ['copilot.vim']
+
+
+[[plugins]]
+repo = 'CopilotC-Nvim/CopilotChat.nvim'
+on_source = ['copilot.vim']
+lua_source = '''
+require("CopilotChat").setup {
+  debug = true, -- Enable debugging
+}
+
+vim.g.mapleader = " "
+vim.api.nvim_set_keymap('n', '<leader>c', ':CopilotChat<CR>', {noremap = true, silent = true})
+
+-- バッファの内容全体を使って Copilot とチャットする
+function CopilotChatBuffer()
+  local input = vim.fn.input("Quick Chat: ")
+  if input ~= "" then
+    require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+  end
+end
+
+-- <leader>ccq (Copilot Chat Quick) で Copilot とチャットする
+vim.api.nvim_set_keymap("n", "<leader>cb", "<cmd>lua CopilotChatBuffer()<cr>", { noremap = true, silent = true })
+'''
