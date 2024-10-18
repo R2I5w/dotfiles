@@ -316,3 +316,10 @@ end
 -- <leader>ccq (Copilot Chat Quick) で Copilot とチャットする
 vim.api.nvim_set_keymap("n", "<leader>cb", "<cmd>lua CopilotChatBuffer()<cr>", { noremap = true, silent = true })
 '''
+
+[[plugins]]
+repo = "yuratomo/w3m.vim"
+on_event = ['BufRead', 'CursorHold']
+hook_source = '''
+let g:w3m#disable_default_keymap = 1
+'''
