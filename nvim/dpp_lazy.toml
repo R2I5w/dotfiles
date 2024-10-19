@@ -331,3 +331,31 @@ hook_source = '''
 let g:winresizer_vert_resize = 1
 let g:winresizer_horiz_resize = 1
 '''
+
+[[plugins]]
+repo = "folke/noice.nvim"
+on_event = ['BufRead', 'CursorHold']
+lua_source = """
+require("noice").setup({
+  views = {
+    cmdline_popup = {
+      position = {
+        row = "5%", -- 画面上部から5%の位置に表示
+        col = "50%", -- 水平方向は中央
+      },
+      size = {
+        width = "60%",
+        height = "auto",
+      },
+      border = {
+        style = "rounded",
+        padding = { 0, 1 },
+      },
+    },
+  },
+})
+"""
+
+[[plugins]]
+repo = "MunifTanjim/nui.nvim"
+on_source = ['noice.nvim']
