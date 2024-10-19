@@ -340,8 +340,8 @@ require("noice").setup({
   views = {
     cmdline_popup = {
       position = {
-        row = "5%", -- 画面上部から5%の位置に表示
-        col = "50%", -- 水平方向は中央
+        row = "5%",
+        col = "50%",
       },
       size = {
         width = "60%",
