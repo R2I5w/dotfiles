@@ -23,14 +23,22 @@ keymap('n', 'sf', function()
                 searchPath = search_path
         })
 end, opts)
+
 keymap('n', 'ff', function()
         vim.fn['ddu#start']({
                 name = 'ff',
         })
 end, opts)
+
 keymap('n', 'fm', function()
         vim.fn['ddu#start']({
                 name = 'ff-mr',
+        })
+end, opts)
+
+keymap('n', 'bb', function()
+        vim.fn['ddu#start']({
+                name = 'ff-buffer',
         })
 end, opts)
 -- keymap("n", "<C-j>", "<cmd>bprev<CR>")

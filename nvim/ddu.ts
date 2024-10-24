@@ -80,5 +80,14 @@ export class Config extends BaseConfig {
                                 },
                         ],
                 });
+
+                args.contextBuilder.patchLocal("ff-buffer", {
+                        ui: "ff",
+                        sources: [
+                                {
+                                        name: "buffer",
+                                },
+                        ],
+                });
         }
 }

@@ -92,6 +92,10 @@ on_source = ['ddu.vim']
 repo = 'kuuote/ddu-source-mr'
 on_source = ['ddu.vim']
 
+[[plugins]]
+repo = 'shun/ddu-source-buffer'
+on_source = ['ddu.vim']
+
 # ddu_filter
 [[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
