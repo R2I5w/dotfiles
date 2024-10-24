@@ -13,7 +13,7 @@ local servers = {
         "yamlls",
         "dockerls",
         "pylsp",
-        "clangd",
+        -- "clangd",
 }
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
