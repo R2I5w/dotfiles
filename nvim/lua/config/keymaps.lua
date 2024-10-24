@@ -36,7 +36,7 @@ keymap('n', 'fm', function()
         })
 end, opts)
 
-keymap('n', '//', function()
+keymap('n', 'b', function()
         vim.fn['ddu#start']({
                 name = 'ff-buffer',
         })
