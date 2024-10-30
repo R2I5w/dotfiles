@@ -354,3 +354,7 @@ require("noice").setup({
 [[plugins]]
 repo = "MunifTanjim/nui.nvim"
 on_source = ['noice.nvim']
+
+[[plugins]]
+repo = "yuki-yano/fuzzy-motion.vim"
+on_event = ['BufRead', 'CursorHold']

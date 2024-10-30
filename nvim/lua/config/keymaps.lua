@@ -61,6 +61,7 @@ keymap('x', '<', '<gv', opts)
 keymap('x', '>', '>gv', opts)
 keymap('n', 'U', '<C-r>', opts)
 keymap('n', 'gd', '<cmd>GitDiff<cr>', opts)
+keymap("n", "S", "<cmd>FuzzyMotion<CR>", opts)
 
 -- w3m.vim
 keymap('n', '<leader>w', ':W3mVSplit google ', opts)
