@@ -358,3 +358,7 @@ on_source = ['noice.nvim']
 [[plugins]]
 repo = "yuki-yano/fuzzy-motion.vim"
 on_event = ['BufRead', 'CursorHold']
+
+[[plugins]]
+repo = "kana/vim-smartword"
+on_event = ['BufRead', 'CursorHold']

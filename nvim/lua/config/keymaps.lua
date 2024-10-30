@@ -1,4 +1,5 @@
 local opts = { silent = true }
+local modes = { 'n', 'v' }
 local keymap = vim.keymap.set
 vim.g.mapleader = " "
 
@@ -82,6 +83,12 @@ vim.api.nvim_create_autocmd("FileType", {
                 keymap('n', '<C-p>', '<Plug>(w3m-prev-link)', opts)
         end
 })
+
+-- smartword
+keymap(modes, 'w', '<Plug>(smartword-w)', opts)
+keymap(modes, 'b', '<Plug>(smartword-b)', opts)
+keymap(modes, 'e', '<Plug>(smartword-e)', opts)
+keymap(modes, 'ge', '<Plug>(smartword-ge)', opts)
 
 -- test
 vim.keymap.set("n", "<leader>k", function() print("Hop!") end)
