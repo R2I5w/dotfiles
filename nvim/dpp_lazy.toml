@@ -48,6 +48,13 @@ lua_source = """
 require('Comment').setup()
 """
 
+[[plugins]]
+repo = "windwp/nvim-autopairs"
+on_event = ['BufRead', 'CursorHold']
+lua_source = """
+require("nvim-autopairs").setup {}
+"""
+
 # [[plugins]]
 # repo = "nvim-lualine/lualine.nvim"
 # on_event = ['VimEnter']
