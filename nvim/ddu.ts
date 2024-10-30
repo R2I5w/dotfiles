@@ -13,14 +13,23 @@ export class Config extends BaseConfig {
                                         winHeight: "float2nr(&lines * 0.8)",
                                 },
                                 ff: {
+                                        autoAction: { name: "preview" },
                                         previewFloating: true,
-                                        previewFloatingTitle: "Preview",
-                                        previewSplit: "horizontal",
-                                        prompt: "> ",
+                                        // previewSplit: "vertical",
+                                        previewWidth:
+                                                "float2nr(&columns * 0.4)",
+                                        previewHeight: "float2nr(&lines * 0.8)",
+                                        previewCol:
+                                                "float2nr(&columns * 0.05 + &columns * 0.45 + 2)",
+                                        previewRow: "float2nr(&lines * 0.92)",
+                                        previewFloatingBorder: "rounded",
                                         split: "floating",
                                         floatingBorder: "rounded",
-                                        winWidth: "float2nr(&columns * 0.9)",
+                                        winWidth: "float2nr(&columns * 0.45)",
                                         winHeight: "float2nr(&lines * 0.8)",
+                                        winRow: "float2nr(&lines * 0.1)",
+                                        winCol: "float2nr(&columns * 0.05)",
+                                        prompt: "> ",
                                 },
                         },
                         sourceOptions: {
@@ -56,11 +65,6 @@ export class Config extends BaseConfig {
                                         name: "file",
                                 },
                         ],
-                        // kindOptions: {
-                        //         _: {
-                        //                 defaultAction: "open",
-                        //         },
-                        // },
                 });
 
                 args.contextBuilder.patchLocal("ff", {
@@ -86,6 +90,15 @@ export class Config extends BaseConfig {
                         sources: [
                                 {
                                         name: "buffer",
+                                },
+                        ],
+                });
+
+                args.contextBuilder.patchLocal("ff-git_status", {
+                        ui: "ff",
+                        sources: [
+                                {
+                                        name: "git_status",
                                 },
                         ],
                 });

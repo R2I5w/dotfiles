@@ -41,6 +41,12 @@ keymap('n', 'b', function()
                 name = 'ff-buffer',
         })
 end, opts)
+
+keymap('n', 'gs', function()
+        vim.fn['ddu#start']({
+                name = 'ff-git_status',
+        })
+end, opts)
 -- keymap("n", "<C-j>", "<cmd>bprev<CR>")
 -- keymap('n', '<C-k>', '<cmd>bnext<CR>')
 keymap("t", "<Esc>", [[<C-\><C-n>]])
@@ -54,7 +60,7 @@ keymap('x', 'y', 'mzy`z', opts)
 keymap('x', '<', '<gv', opts)
 keymap('x', '>', '>gv', opts)
 keymap('n', 'U', '<C-r>', opts)
-keymap('n', 'ds', '<cmd>GitDiff<cr>', opts)
+keymap('n', 'gd', '<cmd>GitDiff<cr>', opts)
 
 -- w3m.vim
 keymap('n', '<leader>w', ':W3mVSplit google ', opts)

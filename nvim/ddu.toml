@@ -61,8 +61,17 @@ vim.api.nvim_create_autocmd("FileType", {
 			opts)
 		keymap('n', 'mk',
 			"<Cmd>call ddu#ui#do_action('itemAction', {'name': 'newDirectory'})<CR>", opts)
-		keymap('n', 'i', "<Cmd>call ddu#ui#do_action('openFilterWindow')<CR>", opts)
 	end,
+})
+
+vim.api.nvim_create_autocmd("CursorMoved", {
+  pattern = "*",
+  callback = function()
+    local filetype = vim.bo.filetype
+    if filetype == "ddu-ff" then
+      vim.fn["ddu#ui#do_action"]("preview")
+    end
+  end,
 })
 '''
 
@@ -94,6 +103,10 @@ on_source = ['ddu.vim']
 
 [[plugins]]
 repo = 'shun/ddu-source-buffer'
+on_source = ['ddu.vim']
+
+[[plugins]]
+repo = 'kuuote/ddu-source-git_status'
 on_source = ['ddu.vim']
 
 # ddu_filter
