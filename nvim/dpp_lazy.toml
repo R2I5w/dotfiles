@@ -422,3 +422,20 @@ on_event = ['BufRead', 'CursorHold']
 lua_source = """
 require("config/insx")
 """
+
+[[plugins]]
+repo = 'hrsh7th/nvim-automa'
+on_event = ['BufRead', 'CursorHold']
+lua_source = """
+local automa = require('automa')
+automa.setup({
+  mapping = {
+    ['.'] = {
+      queries = {
+        -- wide-range dot-repeat definition.
+        automa.query_v1({ '!n(h,j,k,l)+' }),
+      }
+    },
+  }
+})
+"""
