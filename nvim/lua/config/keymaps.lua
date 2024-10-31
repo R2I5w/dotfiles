@@ -3,6 +3,7 @@ local modes = { 'n', 'v' }
 local keymap = vim.keymap.set
 vim.g.mapleader = " "
 
+
 -- keymaps
 keymap("i", "jj", "<ESC>", opts)
 keymap("i", "jj", "<C-[><C-[>", opts)

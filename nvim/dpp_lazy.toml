@@ -48,12 +48,12 @@ lua_source = """
 require('Comment').setup()
 """
 
-[[plugins]]
-repo = "windwp/nvim-autopairs"
-on_event = ['BufRead', 'CursorHold']
-lua_source = """
-require("nvim-autopairs").setup {}
-"""
+# [[plugins]]
+# repo = "windwp/nvim-autopairs"
+# on_event = ['BufRead', 'CursorHold']
+# lua_source = """
+# require("nvim-autopairs").setup {}
+# """
 
 # [[plugins]]
 # repo = "nvim-lualine/lualine.nvim"
@@ -415,3 +415,10 @@ function g:searchx.convert(input) abort
   return a:input[0] .. substitute(a:input[1:], '\\\@<! ', '.\\{-}', 'g')
 endfunction
 '''
+
+[[plugins]]
+repo = "hrsh7th/nvim-insx"
+on_event = ['BufRead', 'CursorHold']
+lua_source = """
+require("config/insx")
+"""
