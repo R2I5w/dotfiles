@@ -26,19 +26,19 @@ keymap('n', 'sf', function()
         })
 end, opts)
 
-keymap('n', 'ff', function()
+keymap('n', '<leader>f', function()
         vim.fn['ddu#start']({
                 name = 'ff',
         })
 end, opts)
 
-keymap('n', 'fm', function()
+keymap('n', '<leader>m', function()
         vim.fn['ddu#start']({
                 name = 'ff-mr',
         })
 end, opts)
 
-keymap('n', 'b', function()
+keymap('n', '<leader>b', function()
         vim.fn['ddu#start']({
                 name = 'ff-buffer',
         })
