@@ -8,7 +8,7 @@ require("insx.preset.standard").setup({
 })
 
 insx.add(
-        '<C-k>',
+        '<C-[>',
         require('insx.recipe.fast_wrap')({
                 close = ')'
         })
