@@ -73,7 +73,7 @@ require('no-neck-pain').setup()
 repo = "Shougo/deol.nvim"
 on_event = ['BufRead', 'CursorHold']
 lua_source = '''
-require("config/deol")
+require("hooks/deol")
 '''
 
 [[plugins]]
@@ -420,7 +420,7 @@ endfunction
 repo = "hrsh7th/nvim-insx"
 on_event = ['BufRead', 'CursorHold']
 lua_source = """
-require("config/insx")
+require("hooks/insx")
 """
 
 [[plugins]]
