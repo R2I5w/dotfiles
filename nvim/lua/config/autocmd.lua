@@ -29,3 +29,7 @@ vim.api.nvim_create_user_command('GitDiff', function()
     normal! gg
   ]])
 end, {})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "WinEnter" }, {
+        callback = function() vim.opt_local.scrolloff = math.floor((vim.fn.line('w$') - vim.fn.line('w0')) * 0.2) end
+})
