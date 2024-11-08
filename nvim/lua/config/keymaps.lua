@@ -62,7 +62,7 @@ keymap('x', 'y', 'mzy`z', opts)
 keymap('x', '<', '<gv', opts)
 keymap('x', '>', '>gv', opts)
 keymap('n', 'U', '<C-r>', opts)
-keymap('n', 'gd', '<cmd>GitDiff<cr>', opts)
+-- keymap('n', 'gd', '<cmd>GitDiff<cr>', opts)
 keymap("n", "S", "<cmd>FuzzyMotion<CR>", opts)
 
 -- hjkl

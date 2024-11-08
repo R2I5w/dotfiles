@@ -38,7 +38,7 @@ local function on_attach(client, bufnr)
         vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
 end
 
--- Deno Language Server の設定
+-- Deno
 lspconfig.denols.setup({
         root_dir = function(fname)
                 local root = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", ".git")(fname)
@@ -63,6 +63,19 @@ lspconfig.denols.setup({
 })
 
 vim.lsp.set_log_level("debug")
+
+-- html
+lspconfig.html.setup {
+        cmd = { "vscode-html-language-server", "--stdio" },
+        filetypes = { "html" },
+        init_options = {
+                configurationSection = { "html", "css", "javascript" },
+                embeddedLanguages = {
+                        css = true,
+                        javascript = true
+                },
+        }
+}
 
 -- lsp keymaps
 keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
