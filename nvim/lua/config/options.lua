@@ -13,7 +13,7 @@ vim.opt.statusline = '─'
 vim.opt.expandtab = true
 vim.opt.scrolloff = 10
 vim.opt.breakindent = true
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.cmd("set ignorecase")
 vim.cmd("set completeopt=menuone,noinsert")
 vim.cmd([[let maplocalleader = ' ']])
