@@ -14,6 +14,7 @@ vim.opt.expandtab = true
 vim.opt.scrolloff = 10
 vim.opt.breakindent = true
 vim.opt.wrap = true
+vim.opt.swapfile = false
 vim.cmd("set ignorecase")
 vim.cmd("set completeopt=menuone,noinsert")
 vim.cmd([[let maplocalleader = ' ']])
