@@ -14,6 +14,7 @@ local servers = {
         "dockerls",
         "pylsp",
         "clangd",
+        "cssls",
 }
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
@@ -74,6 +75,42 @@ lspconfig.html.setup {
                         css = true,
                         javascript = true
                 },
+        }
+}
+
+-- css
+lspconfig.cssls.setup {
+        cmd = { "vscode-css-language-server", "--stdio" },
+        filetypes = { "css", "scss", "less" },
+        root_dir = lspconfig.util.root_pattern("package.json", ".git") or vim.fn.getcwd(),
+        settings = {
+                css = {
+                        validate = true,
+                        lint = {
+                                compatibleVendorPrefixes = "warning",
+                                vendorPrefix = "warning",
+                                duplicateProperties = "warning",
+                                emptyRules = "warning",
+                        }
+                },
+                scss = {
+                        validate = true,
+                        lint = {
+                                compatibleVendorPrefixes = "warning",
+                                vendorPrefix = "warning",
+                                duplicateProperties = "warning",
+                                emptyRules = "warning",
+                        }
+                },
+                less = {
+                        validate = true,
+                        lint = {
+                                compatibleVendorPrefixes = "warning",
+                                vendorPrefix = "warning",
+                                duplicateProperties = "warning",
+                                emptyRules = "warning",
+                        }
+                }
         }
 }
 
