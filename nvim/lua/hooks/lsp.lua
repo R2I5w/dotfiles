@@ -12,7 +12,7 @@ local servers = {
         "taplo",
         "yamlls",
         "dockerls",
-        "pylsp",
+        -- "pylsp",
         "clangd",
         "cssls",
 }
@@ -111,6 +111,21 @@ lspconfig.cssls.setup {
                                 emptyRules = "warning",
                         }
                 }
+        }
+}
+
+
+local function project_name_to_container_name()
+        return "django_1"
+end
+
+lspconfig.pylsp.setup {
+        cmd = {
+                'docker',
+                'exec',
+                '-i',
+                project_name_to_container_name(),
+                'pylsp'
         }
 }
 
