@@ -66,26 +66,26 @@ keymap('n', 'U', '<C-r>', opts)
 keymap("n", "S", "<cmd>FuzzyMotion<CR>", opts)
 
 -- hjkl
-local mappings = {
-        n = {
-                ['<C-h>'] = 'h',
-                ['<C-j>'] = 'j',
-                ['<C-k>'] = 'k',
-                ['<C-l>'] = 'l',
-        },
-        i = {
-                ['<C-h>'] = '<Left>',
-                ['<C-j>'] = '<Down>',
-                ['<C-k>'] = '<Up>',
-                ['<C-l>'] = '<Right>',
-        }
-}
-
-for mode, maps in pairs(mappings) do
-        for lhs, rhs in pairs(maps) do
-                keymap(mode, lhs, rhs, opts)
-        end
-end
+-- local mappings = {
+--         n = {
+--                 ['<C-h>'] = 'h',
+--                 ['<C-j>'] = 'j',
+--                 ['<C-k>'] = 'k',
+--                 ['<C-l>'] = 'l',
+--         },
+--         i = {
+--                 ['<C-h>'] = '<Left>',
+--                 ['<C-j>'] = '<Down>',
+--                 ['<C-k>'] = '<Up>',
+--                 ['<C-l>'] = '<Right>',
+--         }
+-- }
+--
+-- for mode, maps in pairs(mappings) do
+--         for lhs, rhs in pairs(maps) do
+--                 keymap(mode, lhs, rhs, opts)
+--         end
+-- end
 
 -- w3m.vim
 keymap('n', '<leader>w', ':W3mVSplit google ', opts)

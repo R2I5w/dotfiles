@@ -295,6 +295,12 @@ require("CopilotChat").setup {
             end,
         },
     },
+    mappings = {
+    reset = {
+      normal = '',
+      insert = '',
+    },
+  },
 }
 
 vim.g.mapleader = " "
@@ -311,32 +317,27 @@ end
 vim.api.nvim_set_keymap("n", "<leader>cb", "<cmd>lua CopilotChatBuffer()<cr>", { noremap = true, silent = true })
 
 function CopilotChatAllBuffers()
-  -- 新しい一時バッファを作成
   local buf = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_name(buf, "AllBuffers")
   
-  -- バッファを一時的なものとして設定
   vim.api.nvim_buf_set_option(buf, 'buftype', 'nofile')
   vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
   vim.api.nvim_buf_set_option(buf, 'swapfile', false)
   
-  -- 除外するバッファの条件を定義
   local function should_exclude(bufnr)
     local buftype = vim.api.nvim_buf_get_option(bufnr, 'buftype')
     local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
     local bufname = vim.api.nvim_buf_get_name(bufnr)
     
-    -- 除外条件
-    return buftype ~= ""  -- 特殊バッファ（terminal, help など）を除外
-      or filetype == 'qf'  -- quickfix ウィンドウを除外
-      or filetype == 'help'  -- ヘルプを除外
-      or filetype == 'git'  -- git 関連バッファを除外
-      or bufname:match("^%[.*%]$")  -- [Preview] などの特殊バッファを除外
-      or bufname == ""  -- 名前のないバッファを除外
-      or bufnr == buf  -- 新しく作成したバッファ自身を除外
+    return buftype ~= ""
+      or filetype == 'qf'
+      or filetype == 'help'
+      or filetype == 'git'
+      or bufname:match("^%[.*%]$")
+      or bufname == ""
+      or bufnr == buf
   end
 
-  -- 全バッファの内容を収集
   local contents = {}
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
     if vim.api.nvim_buf_is_valid(bufnr) 
@@ -352,10 +353,8 @@ function CopilotChatAllBuffers()
     end
   end
 
-  -- 収集した内容を新しいバッファに書き込む
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(table.concat(contents, "\n"), "\n"))
   
-  -- 新しいバッファを表示
   vim.cmd('vsplit')
   vim.api.nvim_win_set_buf(0, buf)
 end

@@ -124,6 +124,6 @@ call skkeleton#config(#{
 
 call skkeleton#register_keymap('input', ';', 'henkanPoint')
 
-imap <C-(> <Plug>(skkeleton-enable)
-imap <C-)> <Plug>(skkeleton-disable)
+imap <C-j> <Plug>(skkeleton-enable)
+imap <C-l> <Plug>(skkeleton-disable)
 '''
