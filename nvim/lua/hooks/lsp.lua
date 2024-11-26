@@ -116,7 +116,7 @@ lspconfig.cssls.setup {
 
 
 local function project_name_to_container_name()
-        return "django_1"
+        return "ecsite_sample-web-1"
 end
 
 lspconfig.pylsp.setup {
