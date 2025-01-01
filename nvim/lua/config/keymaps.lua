@@ -63,7 +63,7 @@ keymap('x', '<', '<gv', opts)
 keymap('x', '>', '>gv', opts)
 keymap('n', 'U', '<C-r>', opts)
 -- keymap('n', 'gd', '<cmd>GitDiff<cr>', opts)
-keymap("n", "S", "<cmd>FuzzyMotion<CR>", opts)
+-- keymap("n", "S", "<cmd>FuzzyMotion<CR>", opts)
 
 -- hjkl
 -- local mappings = {
@@ -107,11 +107,10 @@ vim.api.nvim_create_autocmd("FileType", {
         end
 })
 
--- smartword
-keymap(modes, 'w', '<Plug>(smartword-w)', opts)
-keymap(modes, 'b', '<Plug>(smartword-b)', opts)
-keymap(modes, 'e', '<Plug>(smartword-e)', opts)
-keymap(modes, 'ge', '<Plug>(smartword-ge)', opts)
+-- Gin shortcuts
+keymap('n', 'S', '<cmd>GinStatus<CR>', opts)
+keymap('n', 'L', '<cmd>GinLog<CR>', opts)
+keymap('n', 'D', '<cmd>GinDiff<CR>', opts)
 
 -- test
 vim.keymap.set("n", "<leader>k", function() print("Hop!") end)
