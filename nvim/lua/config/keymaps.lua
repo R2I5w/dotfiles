@@ -6,6 +6,7 @@ vim.g.mapleader = " "
 
 -- keymaps
 keymap("i", "jj", "<ESC>", opts)
+keymap('c', 'jj', '<C-c>', opts)
 keymap("i", "jj", "<C-[><C-[>", opts)
 keymap("n", "<C-[><C-[>", ":noh<CR>", opts)
 keymap("n", "s", "<C-w>", opts)
@@ -109,8 +110,28 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Gin shortcuts
 keymap('n', 'S', '<cmd>GinStatus<CR>', opts)
-keymap('n', 'L', '<cmd>GinLog<CR>', opts)
+keymap('n', 'L', '<cmd>GinLog --graph --oneline<CR>', opts)
+-- keymap('n', 'L', '<cmd>GinLog<CR>', opts)
 keymap('n', 'D', '<cmd>GinDiff<CR>', opts)
+vim.api.nvim_create_autocmd("FileType", {
+        pattern = { 'gin-diff', 'gin-log', 'gin-status' },
+        callback = function()
+                local opts = { buffer = true, noremap = true }
+                keymap('n', 'c', '<cmd>Gin commit<CR>', opts)
+                keymap('n', 'q', '<cmd>bdelete<CR>', opts)
+        end
+})
 
 -- test
-vim.keymap.set("n", "<leader>k", function() print("Hop!") end)
+-- vim.keymap.set("n", "<leader>k", function() print("Hop!") end)
+
+-- Cody
+keymap("n", "<leader>c", ":<C-u>CodyToggle<CR>", opts)
+keymap("v", "<leader>ct", ":CodyTask ", opts)
+keymap("v", "<leader>ca", ":CodyAsk ", opts)
+
+-- GitDiff
+keymap('n', '<Leader>d', ':GitDiff<CR>', opts)
+
+-- dash.vim
+keymap('n', '<leader>k', '<Plug>DashSearch', opts)

@@ -1,9 +1,3 @@
-# [[plugins]]
-# repo = "craftzdog/solarized-osaka.nvim"
-# on_event = ['VimEnter']
-# lua_source = '''
-# require('solarized-osaka').setup({ })
-# '''
 [[plugins]]
 repo = "ellisonleao/gruvbox.nvim"
 on_event = ['BufRead', 'CursorHold']
@@ -19,9 +13,7 @@ require("gruvbox").setup({
 
 [[plugins]]
 repo = "miyakogi/seiya.vim"
-# on_event = ['BufRead', 'CursorHold']
 on_event = ["ColorSchemePre", 'BufRead', 'CursorHold']
-# on_cmd = ["SeiyaEnable"]
 lua_source = """
 vim.cmd("let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbhhg']")
 -- vim.g.seiya_auto_enable = 1
@@ -48,20 +40,6 @@ lua_source = """
 require('Comment').setup()
 """
 
-# [[plugins]]
-# repo = "windwp/nvim-autopairs"
-# on_event = ['BufRead', 'CursorHold']
-# lua_source = """
-# require("nvim-autopairs").setup {}
-# """
-
-# [[plugins]]
-# repo = "nvim-lualine/lualine.nvim"
-# on_event = ['VimEnter']
-# lua_source = """
-# require('lualine').setup()
-# """
-
 [[plugins]]
 repo = "shortcuts/no-neck-pain.nvim"
 on_event = ['BufRead', 'CursorHold']
@@ -80,19 +58,6 @@ require("hooks/deol")
 repo = "vim-jp/vimdoc-ja"
 on_event = ['BufRead', 'CursorHold']
 
-
-[[plugins]]
-repo = "ryicoh/deepl.vim"
-on_event = ['BufRead', 'CursorHold']
-hook_source = '''
-let g:deepl#endpoint = "https://api-free.deepl.com/v2/translate"
-
-let g:deepl#auth_key = "8321b217-9289-4510-934e-ca5abb14fa57:fx"
-
-vmap t<C-j> <Cmd>call deepl#v("JA")<CR>
-vmap t<C-e> <Cmd>call deepl#v("EN")<CR>
-'''
-
 [[plugins]]
 repo = "skanehira/translate.vim"
 on_event = ['BufRead', 'CursorHold']
@@ -109,258 +74,9 @@ vmap <leader>t <Plug>(VTranslate)
 repo = "machakann/vim-sandwich"
 on_event = ['BufRead', 'CursorHold']
 
-# [[plugins]]
-# repo = "nvim-zh/colorful-winsep.nvim"
-# on_event = ['WinNew', 'WinEnter']
-# lua_source = '''
-# require('colorful-winsep').setup {
-#   symbols = { '─', '│', '╭', '╮', '╰', '╯' },
-# }
-# '''
-
-[[plugins]]
-repo = 'mfussenegger/nvim-dap'
-on_event = ['BufRead', 'CursorHold']
-
-[[plugins]]
-repo = 'nvim-neotest/nvim-nio'
-on_source = ['nvim-dap']
-
-[[plugins]]
-repo = 'rcarriga/nvim-dap-ui'
-on_source = ['nvim-dap']
-lua_source = '''
-require('dapui').setup({
-  layouts = {
-    {
-      elements = {
-        { id = "watches", size = 0.20 },
-        { id = "stacks", size = 0.20 },
-        { id = "breakpoints", size = 0.20 },
-        { id = "scopes", size = 0.40 }
-      },
-      position = "right",
-      size = 40
-    },
-    {
-      elements = {
-        { id = "console", size = 0.5 },
-        { id = "repl", size = 0.5 }
-      },
-      position = "bottom",
-      size = 10
-    }
-  },
-})
--- 自動でウィンドウを開閉
-local dap, dapui = require("dap"), require("dapui")
-dap.listeners.before.attach.dapui_config = function()
-  dapui.open()
-end
-dap.listeners.before.launch.dapui_config = function()
-  dapui.open()
-end
-dap.listeners.before.event_terminated.dapui_config = function()
-  dapui.close()
-end
-dap.listeners.before.event_exited.dapui_config = function()
-  dapui.close()
-end
-'''
-
-[[plugins]]
-repo = 'theHamsta/nvim-dap-virtual-text'
-on_source = ['nvim-dap']
-lua_source = '''
-require('nvim-dap-virtual-text').setup()
-'''
-
-[[plugins]]
-repo = 'mfussenegger/nvim-dap-python'
-on_event = ['BufRead', 'CursorHold']
-# on_source = ['nvim-dap']
-lua_source = '''
-require('dap-python').setup('python')
--- コンテナ上のPythonをデバッグする設定
-table.insert(require('dap').configurations.python, {
-  type = 'python',
-  request = 'attach',
-  name = 'Remote Python Debugger',
-  port = 5678,
-  host = "127.0.0.1",
-  mode = "remote",
-  cwd = vim.fn.getcwd(),
-  -- ローカルとコンテナのパスをマッピング
-  pathMappings = {
-    {
-      localRoot = function() -- ローカルのPythonコードを格納するディレクトリ
-        return vim.fn.input("Local directory > ", vim.fn.getcwd(), "file")
-      end,
-      remoteRoot = function() -- コンテナ内のPythonコードを格納するディレクトリ
-        return vim.fn.input("Container directory > ", "/code/app", "file")
-      end,
-    },
-  },
-})
-
--- :help dap-mappings の例に従ってキーマッピングを設定
-vim.g.mapleader = " "
-vim.keymap.set('n', '<leader>d', function() require('dap').continue() end)
-vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
-vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)
-vim.keymap.set('n', '<F12>', function() require('dap').step_out() end)
-vim.keymap.set('n', '<Leader>b', function() require('dap').toggle_breakpoint() end)
-vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint() end)
-vim.keymap.set('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
-vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
-vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
-vim.keymap.set({'n', 'v'}, '<Leader>dh', function()
-  require('dap.ui.widgets').hover()
-end)
-vim.keymap.set({'n', 'v'}, '<Leader>dp', function()
-  require('dap.ui.widgets').preview()
-end)
-vim.keymap.set('n', '<Leader>df', function()
-  local widgets = require('dap.ui.widgets')
-  widgets.centered_float(widgets.frames)
-end)
-vim.keymap.set('n', '<Leader>ds', function()
-  local widgets = require('dap.ui.widgets')
-  widgets.centered_float(widgets.scopes)
-end)
-'''
-
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
-on_source = ['copilot.vim']
-
-
-[[plugins]]
-repo = 'CopilotC-Nvim/CopilotChat.nvim'
-on_source = ['copilot.vim']
-lua_source = '''
-require("CopilotChat").setup {
-  debug = true, -- Enable debugging
-  prompts = {
-        Explain = {
-            prompt = "/COPILOT_EXPLAIN コードを日本語で説明してください",
-            mapping = '<leader>ce',
-            description = "コードの説明をお願いする",
-        },
-        Review = {
-            prompt = '/COPILOT_REVIEW コードを日本語でレビューしてください。',
-            mapping = '<leader>cr',
-            description = "コードのレビューをお願いする",
-        },
-        Fix = {
-            prompt = "/COPILOT_FIX このコードには問題があります。バグを修正したコードを表示してください。説明は日本語でお願いします。",
-            mapping = '<leader>cf',
-            description = "コードの修正をお願いする",
-        },
-        Optimize = {
-            prompt = "/COPILOT_REFACTOR 選択したコードを最適化し、パフォーマンスと可読性を向上させてください。説明は日本語でお願いします。",
-            mapping = '<leader>co',
-            description = "コードの最適化をお願いする",
-        },
-        Docs = {
-            prompt = "/COPILOT_GENERATE 選択したコードに関するドキュメントコメントを日本語で生成してください。",
-            mapping = '<leader>cd',
-            description = "コードのドキュメント作成をお願いする",
-        },
-        Tests = {
-            prompt = "/COPILOT_TESTS 選択したコードの詳細なユニットテストを書いてください。説明は日本語でお願いします。",
-            mapping = '<leader>ct',
-            description = "テストコード作成をお願いする",
-        },
-        FixDiagnostic = {
-            prompt = 'コードの診断結果に従って問題を修正してください。修正内容の説明は日本語でお願いします。',
-            mapping = '<leader>cd',
-            description = "コードの修正をお願いする",
-            selection = require('CopilotChat.select').diagnostics,
-        },
-        Commit = {
-            prompt =
-            '実装差分に対するコミットメッセージを日本語で記述してください。',
-            mapping = '<leader>cc',
-            description = "コミットメッセージの作成をお願いする",
-            selection = require('CopilotChat.select').gitdiff,
-        },
-        CommitStaged = {
-            prompt =
-            'ステージ済みの変更に対するコミットメッセージを日本語で記述してください。',
-            mapping = '<leader>cs',
-            description = "ステージ済みのコミットメッセージの作成をお願いする",
-            selection = function(source)
-                return require('CopilotChat.select').gitdiff(source, true)
-            end,
-        },
-    },
-    mappings = {
-    reset = {
-      normal = '',
-      insert = '',
-    },
-  },
-}
-
-vim.g.mapleader = " "
-vim.api.nvim_set_keymap('n', '<leader>c', ':CopilotChat<CR>', {noremap = true, silent = true})
-
-function CopilotChatBuffer()
-  local input = vim.fn.input("Quick Chat: ")
-  if input ~= "" then
-    require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
-  end
-end
-
--- <leader>ccq (Copilot Chat Quick) で Copilot とチャットする
-vim.api.nvim_set_keymap("n", "<leader>cb", "<cmd>lua CopilotChatBuffer()<cr>", { noremap = true, silent = true })
-
-function CopilotChatAllBuffers()
-  local buf = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_buf_set_name(buf, "AllBuffers")
-  
-  vim.api.nvim_buf_set_option(buf, 'buftype', 'nofile')
-  vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
-  vim.api.nvim_buf_set_option(buf, 'swapfile', false)
-  
-  local function should_exclude(bufnr)
-    local buftype = vim.api.nvim_buf_get_option(bufnr, 'buftype')
-    local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
-    local bufname = vim.api.nvim_buf_get_name(bufnr)
-    
-    return buftype ~= ""
-      or filetype == 'qf'
-      or filetype == 'help'
-      or filetype == 'git'
-      or bufname:match("^%[.*%]$")
-      or bufname == ""
-      or bufnr == buf
-  end
-
-  local contents = {}
-  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_valid(bufnr) 
-      and vim.api.nvim_buf_is_loaded(bufnr) 
-      and not should_exclude(bufnr) then
-      
-      local bufname = vim.api.nvim_buf_get_name(bufnr)
-      local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-      table.insert(contents, string.format("バッファ: %s\n\n%s\n%s\n", 
-        vim.fn.fnamemodify(bufname, ":t"),
-        table.concat(lines, "\n"),
-        string.rep("-", 50)))
-    end
-  end
-
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(table.concat(contents, "\n"), "\n"))
-  
-  vim.cmd('vsplit')
-  vim.api.nvim_win_set_buf(0, buf)
-end
-
-vim.api.nvim_set_keymap("n", "<leader>ca", "<cmd>lua CopilotChatAllBuffers()<cr>", { noremap = true, silent = true })
-'''
+on_source = ['sg.nvim']
 
 [[plugins]]
 repo = "yuratomo/w3m.vim"
@@ -406,65 +122,14 @@ repo = "MunifTanjim/nui.nvim"
 on_source = ['noice.nvim']
 
 [[plugins]]
-repo = "yuki-yano/fuzzy-motion.vim"
-on_event = ['BufRead', 'CursorHold']
-
-[[plugins]]
-repo = "kana/vim-smartword"
-on_event = ['BufRead', 'CursorHold']
-
-[[plugins]]
-repo = "hrsh7th/vim-searchx"
-on_event = ['BufRead', 'CursorHold']
-hook_source = '''
-" Overwrite / and ?.
-nnoremap ? <Cmd>call searchx#start({ 'dir': 0 })<CR>
-nnoremap / <Cmd>call searchx#start({ 'dir': 1 })<CR>
-xnoremap ? <Cmd>call searchx#start({ 'dir': 0 })<CR>
-xnoremap / <Cmd>call searchx#start({ 'dir': 1 })<CR>
-cnoremap ; <Cmd>call searchx#select()<CR>
-
-" Move to next/prev match.
-nnoremap N <Cmd>call searchx#prev_dir()<CR>
-nnoremap n <Cmd>call searchx#next_dir()<CR>
-xnoremap N <Cmd>call searchx#prev_dir()<CR>
-xnoremap n <Cmd>call searchx#next_dir()<CR>
-nnoremap <C-k> <Cmd>call searchx#prev()<CR>
-nnoremap <C-j> <Cmd>call searchx#next()<CR>
-xnoremap <C-k> <Cmd>call searchx#prev()<CR>
-xnoremap <C-j> <Cmd>call searchx#next()<CR>
-cnoremap <C-k> <Cmd>call searchx#prev()<CR>
-cnoremap <C-j> <Cmd>call searchx#next()<CR>
-
-" Clear highlights
-nnoremap <C-l> <Cmd>call searchx#clear()<CR>
-
-let g:searchx = {}
-
-" Auto jump if the recent input matches to any marker.
-let g:searchx.auto_accept = v:true
-
-" The scrolloff value for moving to next/prev.
-let g:searchx.scrolloff = &scrolloff
-
-" To enable scrolling animation.
-let g:searchx.scrolltime = 500
-
-" To enable auto nohlsearch after cursor is moved
-let g:searchx.nohlsearch = {}
-let g:searchx.nohlsearch.jump = v:true
-
-" Marker characters.
-let g:searchx.markers = split('ABCDEFGHIJKLMNOPQRSTUVWXYZ', '.\zs')
-
-" Convert search pattern.
-function g:searchx.convert(input) abort
-  if a:input !~# '\k'
-    return '\V' .. a:input
-  endif
-  return a:input[0] .. substitute(a:input[1:], '\\\@<! ', '.\\{-}', 'g')
-endfunction
-'''
+repo = "rcarriga/nvim-notify"
+on_source = ['noice.nvim']
+lua_source = """
+require("notify").setup({
+  background_colour = "#000000",
+  timeout = 2000,
+})
+"""
 
 [[plugins]]
 repo = "hrsh7th/nvim-insx"
@@ -490,18 +155,18 @@ automa.setup({
 })
 """
 
-# [[plugins]]
-# repo = "mvllow/modes.nvim"
-# on_event = ['BufRead', 'CursorHold']
-# lua_source = """
-# require('modes').setup({
-#     colors = {
-#                 bg = "",
-# 		copy = "#f5c359",
-# 		delete = "#c75c6a",
-# 		insert = "#78ccc5",
-# 		visual = "#9745be",
-#  },
-#  line_opacity = 0,
-# })
-# """
+[[plugins]]
+repo = "lambdalisue/vim-gin"
+on_event = ['BufRead', 'CursorHold']
+
+[[plugins]]
+repo = "sourcegraph/sg.nvim"
+on_event = ['BufRead', 'CursorHold']
+lua_source = """
+require('sg').setup({
+})
+"""
+
+[[plugins]]
+repo = "rizzatti/dash.vim"
+on_event = ['BufRead', 'CursorHold']

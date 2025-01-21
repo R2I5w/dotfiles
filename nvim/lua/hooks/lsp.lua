@@ -116,7 +116,7 @@ lspconfig.cssls.setup {
 
 
 local function project_name_to_container_name()
-        return "ecsite_sample-web-1"
+        return "twitter_clone-web-1"
 end
 
 lspconfig.pylsp.setup {
@@ -128,6 +128,7 @@ lspconfig.pylsp.setup {
                 'pylsp'
         }
 }
+
 
 -- lsp keymaps
 keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")

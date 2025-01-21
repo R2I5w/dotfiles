@@ -9,8 +9,10 @@ export class Config extends BaseConfig {
                                 filer: {
                                         split: "floating",
                                         floatingBorder: "rounded",
-                                        winWidth: "float2nr(&columns * 0.9)",
+                                        winWidth: "float2nr(&columns * 0.45)",
                                         winHeight: "float2nr(&lines * 0.8)",
+                                        winRow: "float2nr(&lines * 0.1)",
+                                        winCol: "float2nr((&columns - &columns * 0.45) / 2)",
                                 },
                                 ff: {
                                         autoAction: { name: "preview" },
