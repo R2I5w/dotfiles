@@ -1,11 +1,11 @@
 [general]
+import = ["~/.config/alacritty/themes/gruber_darker.toml"]
 
 [window]
 dynamic_title = true
 padding = { x = 4, y = 2 }
 opacity = 0.75
 decorations = "none"
-# blur = true
 
 [scrolling]
 history = 10000
@@ -18,3 +18,10 @@ normal = { family = "Hack Nerd Font", style = "Regular" }
 bold = { family = "Hack Nerd Font", style = "Bold" }
 italic = { family = "Hack Nerd Font", style = "Italic" }
 bold_italic = { family = "Hack Nerd Font", style = "Bold Italic" }
+
+[terminal]
+shell = { program = "/opt/homebrew/bin/fish", args = [
+        "-l",
+        "-C",
+        "tmux new-session -A -s main",
+] }
