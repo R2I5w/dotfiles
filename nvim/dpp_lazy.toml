@@ -166,7 +166,3 @@ lua_source = """
 require('sg').setup({
 })
 """
-
-[[plugins]]
-repo = "rizzatti/dash.vim"
-on_event = ['BufRead', 'CursorHold']

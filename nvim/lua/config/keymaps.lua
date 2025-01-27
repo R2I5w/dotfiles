@@ -132,6 +132,3 @@ keymap("v", "<leader>ca", ":CodyAsk ", opts)
 
 -- GitDiff
 keymap('n', '<Leader>d', ':GitDiff<CR>', opts)
-
--- dash.vim
-keymap('n', '<leader>k', '<Plug>DashSearch', opts)
