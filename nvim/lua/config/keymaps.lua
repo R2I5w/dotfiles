@@ -111,7 +111,6 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Gin shortcuts
 keymap('n', 'S', '<cmd>GinStatus<CR>', opts)
 keymap('n', 'L', '<cmd>GinLog --graph --oneline<CR>', opts)
--- keymap('n', 'L', '<cmd>GinLog<CR>', opts)
 keymap('n', 'D', '<cmd>GinDiff<CR>', opts)
 vim.api.nvim_create_autocmd("FileType", {
         pattern = { 'gin-diff', 'gin-log', 'gin-status' },
