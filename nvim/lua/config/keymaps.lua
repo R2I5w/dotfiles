@@ -125,8 +125,8 @@ vim.api.nvim_create_autocmd("FileType", {
 -- vim.keymap.set("n", "<leader>k", function() print("Hop!") end)
 
 -- Cody
-keymap("n", "<leader>c", ":<C-u>CodyToggle<CR>", opts)
-keymap("v", "<leader>ct", ":CodyTask ", opts)
+-- keymap("n", "<leader>c", ":<C-u>CodyToggle<CR>", opts)
+-- keymap("v", "<leader>ct", ":CodyTask ", opts)
 -- keymap("v", "<leader>ca", ":CodyAsk ", opts)
 
 -- GitDiff

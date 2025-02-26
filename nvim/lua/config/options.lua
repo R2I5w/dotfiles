@@ -1,4 +1,4 @@
--- vim.g.maplocalleader = ' '
+vim.g.maplocalleader = ' '
 vim.wo.number = true
 vim.opt.laststatus = 3
 vim.opt.cursorline = true

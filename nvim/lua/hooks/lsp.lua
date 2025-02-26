@@ -15,14 +15,13 @@ local servers = {
         -- "pylsp",
         "clangd",
         "cssls",
+        "ts_ls",
 }
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
         vim.lsp.handlers.hover,
         {
-                border = "rounded", -- "shadow" , "none", "rounded"
-                -- border = border
-                -- width = 100,
+                border = "rounded",
         }
 )
 
@@ -36,34 +35,31 @@ local function on_attach(client, bufnr)
         local opts = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-        vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
 end
 
 -- Deno
-lspconfig.denols.setup({
-        root_dir = function(fname)
-                local root = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", ".git")(fname)
-                return root or vim.fn.getcwd()
-        end,
-        init_options = {
-                lint = true,
-                unstable = true,
-                suggest = {
-                        imports = {
-                                hosts = {
-                                        ["https://deno.land"] = true,
-                                        ["https://x.nest.land"] = true,
-                                        ["https://crux.land"] = true,
-                                },
-                        },
-                },
-        },
-        on_attach = on_attach,
-        filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-        single_file_support = true,
-})
-
-vim.lsp.set_log_level("debug")
+-- lspconfig.denols.setup({
+--         root_dir = function(fname)
+--                 local root = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deps.ts", ".git")(fname)
+--                 return root or vim.fn.getcwd()
+--         end,
+--         init_options = {
+--                 lint = true,
+--                 unstable = true,
+--                 suggest = {
+--                         imports = {
+--                                 hosts = {
+--                                         ["https://deno.land"] = true,
+--                                         ["https://x.nest.land"] = true,
+--                                         ["https://crux.land"] = true,
+--                                 },
+--                         },
+--                 },
+--         },
+--         on_attach = on_attach,
+--         filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+--         single_file_support = true,
+-- })
 
 -- html
 lspconfig.html.setup {
